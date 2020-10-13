@@ -7,6 +7,5 @@ class Test{
 		a.printElement();
 		c.deleteStudent(a, b);
 		a.printElement();
-		c.printElement();
 	}
 }
