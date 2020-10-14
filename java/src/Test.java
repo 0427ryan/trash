@@ -6,6 +6,5 @@ class Test{
 		c.addStudent(a,b);
 		a.printElement();
 		c.deleteStudent(a, b);
-		a.printElement();
 	}
 }
