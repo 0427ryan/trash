@@ -14,14 +14,18 @@ public class CardGame {
 		}
 	}
 	public boolean addPlayer(Player player) {
-		if( playerList.contains(player) ) {
+		if( playerList.contains(player) && 
+			getPlayerNumber() < maxPlayerNumber ) {
 			return false;
 		}
 		this.playerList.add(player);
 		player.addGame(this);
 		return true;
 	}
+	public int getPlayerNumber(){
+		return playerList.size();
+	}
 	public void play(){
-
+		//
 	} 
 }
