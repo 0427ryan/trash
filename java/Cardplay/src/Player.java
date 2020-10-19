@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 
 public class Player {
     String name;
     CardGame nowPlaying = null;
+    ArrayList<Card> holdedCard;
 
     public Player(){
         this.name = "unnamed player";
@@ -17,7 +19,7 @@ public class Player {
         game.addPlayer(this);
         return true;
     }
-    public void play(){
-        //
+    public boolean throwCard(Card card){
+        return holdedCard.remove(card);
     }
 }

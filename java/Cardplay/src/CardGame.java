@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class CardGame {
+public abstract class CardGame {
 	public final int maxPlayerNumber;
 	ArrayList<Player> playerList = new ArrayList<>();
 	
@@ -25,7 +25,5 @@ public class CardGame {
 	public int getPlayerNumber(){
 		return playerList.size();
 	}
-	public void play(){
-		//
-	} 
+	public abstract void play();
 }
