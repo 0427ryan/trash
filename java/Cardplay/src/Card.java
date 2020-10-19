@@ -1,22 +1,42 @@
 public class Card {
-	private Integar number;
+	private int number;
 	private Kind kind;
 
-	public enum Kind{
-
-	}
-
-	public Card(int number, String kind){
+	public Card(int number, Kind kind){
 		this.number = number;
-		this.kind = new String(kind);
+		this.kind = kind;
 	}
-	public int compareTo(Object o){
-		if(this.toString().equals( o.toString() )) {
+	public int compareTo(Card o){
+		if(this.getPriority() > o.getPriority() ) {
+			return 1;
+		}
+		if(this.getPriority() == o.getPriority() ){
 			return 0;
 		}
+		return -1;
 	}
+	
+	public int getPriority(){
+		int kindPriority = 0;
+		switch(this.kind){
+			case SPADE:
+				kindPriority = 1;
+				break;
+			case DIAMOND:
+				kindPriority = 2;
+				break;
+			case HEART:
+				kindPriority = 3;
+				break;
+			case CLUB:
+				kindPriority = 4;
+				break;
+		}
+		return this.number * 4 + kindPriority;
+	}
+
 	public String toString(){
-		return this.kind + this.number;  
+		return this.kind.toString() + this.number;  
 	}
 
 }
