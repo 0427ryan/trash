@@ -1,5 +1,6 @@
 package control;
 import java.util.LinkedList;
+import product.*;
 
 public class Order {
 
