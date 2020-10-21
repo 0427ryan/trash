@@ -9,7 +9,7 @@ public class Shop extends Application{
 	@Override
 	public void start(Stage primaryStage){
 		GoodLifeFoods foodShop = new GoodLifeFoods();
-		Pane = 
+		Button  = new Button();
 
 		Scene sc = new Scene();
 		primaryStage.setScene(sc);

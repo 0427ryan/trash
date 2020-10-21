@@ -1,7 +1,10 @@
 import java.util.LinkedList;
 
 public class Order {
+
+	int sumPrice = 0;
 	LinkedList<Product> productList = new LinkedList<>();
+
 	public Order(){	
 	}
 	public Order(Product... products){
@@ -11,10 +14,11 @@ public class Order {
 		for(Product p : products){
 			if(product != null){
 				productList.add(product);
+				sumPrice += product.getPrice();
 			}
 		}
 	}
-	public Object getProductList(){
-		
+	public Object[] getProductList(){
+		return productList.toArray();
 	}
 }
