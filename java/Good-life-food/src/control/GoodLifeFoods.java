@@ -1,3 +1,4 @@
+package control;
 
 public class GoodLifeFoods {
 	private static DeliverSystem deliverSystem = new DeliverSystem();
