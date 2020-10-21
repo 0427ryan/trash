@@ -20,7 +20,7 @@ class Message
 
 class Customer
 
-class Stuff
+class Staff
 
 class Order
 
