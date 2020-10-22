@@ -10,9 +10,11 @@ public class DicePlay {
         Dice d2 = new Dice();
         int sum = d1.getNextNumber() + d2.getNextNumber();
 
-        System.out.println("d1:" + d1.getState());
+        System.out.print("d1:" + d1.getState() + "  ");
         System.out.println("d2:" + d2.getState());
-        
+        System.out.println("sum:" + sum);
+        System.out.println();
+
         if(sum == 2 || sum == 3 || sum == 12){
             System.out.println("lose");
             return;
@@ -21,16 +23,26 @@ public class DicePlay {
             System.out.println("win");
             return;
         }
+        int lastSum;
         while(sum != 7){
+            lastSum =sum;
             sum = d1.getNextNumber() + d2.getNextNumber();
-            System.out.println("d1:" + d1.getState());
+
+            System.out.print("d1:" + d1.getState() + "  ");
             System.out.println("d2:" + d2.getState());
-            if(d1.getState() == d2.getState()){
+            System.out.println("sum:" + sum);
+            System.out.println();
+            
+            if(sum == lastSum){
                 System.out.println("win");
                 return;
             }
+            if(sum == 7){
+                System.out.println("lose");
+                return;
+            }
         }
-        System.out.println("lose");
+        
     }
 
 }
