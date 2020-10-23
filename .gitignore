@@ -6,8 +6,6 @@ img
 
 Test.java
 
-setting.sublime-project
-
-setting.sublime-workspace
+*.sublime-workspace
 
 .vscode
