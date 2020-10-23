@@ -1308,13 +1308,11 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record",
-		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/java",
-		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/java/Good-life-food",
-		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/java/Good-life-food/src"
+		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/java/Good-life-food"
 	],
 	"file_history":
 	[
+		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/java/Good-life-food/setting.sublime-project",
 		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/java/Good-life-food/src/control/Order.java",
 		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/java/Good-life-food/src/ui/Shop.java",
 		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/java/Good-life-food/src/control/OrderSystem.java",
@@ -1441,12 +1439,11 @@
 		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/README.md",
 		"/C/Users/123/OneDrive/桌面/晉/GitHub/University-freshman-record/src/Test.java",
 		"/C/Users/123/OneDrive/桌面/晉/程式練習/Java紀錄/test/src/FXest.java",
-		"/C/Users/123/OneDrive/桌面/晉/程式練習/python紀錄/test.py",
-		"/C/Users/123/AppData/Roaming/Sublime Text 3/Packages/User/MyPythonBulider.sublime-build"
+		"/C/Users/123/OneDrive/桌面/晉/程式練習/python紀錄/test.py"
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
@@ -1484,7 +1481,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 36.0
+		"height": 37.0
 	},
 	"input":
 	{
@@ -1541,7 +1538,7 @@
 	"project": "setting.sublime-project",
 	"replace":
 	{
-		"height": 68.0
+		"height": 70.0
 	},
 	"save_all_on_build": true,
 	"select_file":
