@@ -1,6 +1,11 @@
 
 public class DicePlay {
 
+    public static void main(String[] args) {
+        DicePlay p = new DicePlay();
+        p.play();
+    }
+
     public DicePlay(){
     }
     
