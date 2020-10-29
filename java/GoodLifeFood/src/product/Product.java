@@ -5,11 +5,11 @@ public abstract class Product {
     protected Product() {
     }
 
-    protected static abstract void setPriceInSingle(int price);
+    protected static void setPriceInSingle(int price){};
 
     public abstract int getPrice();
 
     public String getName(){
-        return "Product";
+        return this.getClass().getName();
     }
 }
