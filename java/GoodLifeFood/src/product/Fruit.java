@@ -10,7 +10,6 @@ public abstract class Fruit extends Product{
 
 	public abstract int getPrice();
 
-    @Override
     public String getName(){
         return "Fruit";
     }
