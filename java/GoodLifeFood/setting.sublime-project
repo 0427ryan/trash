@@ -1,8 +1,63 @@
 {
-	"folders":
-	[
-		{
-			"path": "."
-		}
-	]
+    "folders":
+    [
+        {
+            "path": "."
+        }
+    ],
+    "build_systems":
+    [
+        { 
+            "name":"java builder",
+            "cmd": ["javac","-cp","${project_path}/bin","-encoding","UTF-8","-d","${project_path}/bin","$file"], 
+            "file_regex": "^(...*?):([0-9]*):?([0-9]*)", 
+            "selector": "source.java",  
+            "encoding":"UTF-8",
+            "variants": [ 
+                {
+                    "name":"compile package",
+                    "cmd": 
+                    [
+                        "javac",
+                        "-cp","${project_path}/bin",
+                        "-encoding","UTF-8",
+                        "-d","${project_path}/bin",
+                        "*.java"
+                    ], 
+                    "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+                    "working_dir":"${file_path}", 
+                    "selector": "source.java",
+                    "encoding":"UTF-8", 
+                },
+                {
+                    "name":"compile all",
+                    "cmd": 
+                    [
+                        "javac","-cp","${project_path}/bin",
+                        "-encoding","UTF-8",
+                        "-d","${project_path}/bin",
+    //*******************新增檔案放在這****************************
+                        "control/*.java",
+                        "product/*.java"
+
+    //************************************************************
+                    ], 
+                    "file_regex": "^(...*?):([0-9]*):?([0-9]*)", 
+                    "working_dir":"${project_path}/src",
+                    "selector": "source.java",
+                    "encoding":"UTF-8", 
+                },
+                { 
+                    "name": "Run",
+                    "shell": true,
+                    "cmd" : [
+                        "start","cmd","/c",
+                        "java -cp ${project_path}/bin ${file} &echo. & pause"
+                    ],
+                    "working_dir": "${file_path}",
+                    "encoding":"UTF-8"
+                }
+            ] 
+        }
+    ]
 }
