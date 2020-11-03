@@ -22,7 +22,7 @@ public class Console {
             try {
                 System.out.print(tell);
                 ret = in.nextInt();
-                if(ret <= 0){
+                if(ret <= 0) {
                     System.out.println("請輸入正整數");
                 }
             } catch(InputMismatchException e) {
