@@ -3,7 +3,7 @@ public class GoodLifeFood {
 
     public GoodLifeFood() {
         Product p;
-        System.out.println("Welcom");
+        System.out.println("Welcome");
         do {
             System.out.println();
             p = ProductDB.getProduct(
