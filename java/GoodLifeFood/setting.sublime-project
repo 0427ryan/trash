@@ -7,57 +7,72 @@
     ],
     "build_systems":
     [
-        { 
+        {
             "name":"java builder",
-            "cmd": ["javac","-cp","${project_path}/bin","-encoding","UTF-8","-d","${project_path}/bin","$file"], 
+            "cmd": [
+                "javac",
+                "-cp","${project_path}/bin",
+                "-encoding","UTF-8",
+                "-d","${project_path}/bin",
+                "--module-path",
+                "C:\\Program Files\\Java\\javafx-sdk-11.0.2\\lib",
+                "--add-modules","javafx.controls",
+                "$file"
+            ], 
             "file_regex": "^(...*?):([0-9]*):?([0-9]*)", 
-            "selector": "source.java",  
-            "encoding":"UTF-8",
+            "selector": "source.java",
+            "encoding":"UTF-8", 
+            "osx":{},
             "variants": [ 
                 {
                     "name":"compile package",
-                    "cmd": 
-                    [
-                        "javac",
+                    "cmd": ["javac",
                         "-cp","${project_path}/bin",
+                        "--module-path",
+                        "C:\\Program Files\\Java\\javafx-sdk-11.0.2\\lib",
+                        "--add-modules","javafx.controls",
                         "-encoding","UTF-8",
                         "-d","${project_path}/bin",
                         "*.java"
                     ], 
-                    "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
-                    "working_dir":"${file_path}", 
-                    "selector": "source.java",
+                    "file_regex": "^(...*?):([0-9]*):?([0-9]*)", 
+                    "selector": "source.java", 
                     "encoding":"UTF-8", 
+                    "osx":{}
                 },
                 {
                     "name":"compile all",
-                    "cmd": 
-                    [
-                        "javac","-cp","${project_path}/bin",
+                    "cmd": ["javac",
+                        "-cp","${project_path}/bin",
+                        "--module-path",
+                        "C:\\Program Files\\Java\\javafx-sdk-11.0.2\\lib",
+                        "--add-modules","javafx.controls",
                         "-encoding","UTF-8",
                         "-d","${project_path}/bin",
-    //*******************新增檔案放在這****************************
-                        "control/*.java",
-                        "product/*.java"
-
-    //************************************************************
+            // *********************************************************
+                        "controls/*.java",
+                        "product/*.java",
+                        "ui/*.java"
+            // *********************************************************
                     ], 
                     "file_regex": "^(...*?):([0-9]*):?([0-9]*)", 
-                    "working_dir":"${project_path}/src",
                     "selector": "source.java",
+                    "working_dir":"{$project_path/src}", 
                     "encoding":"UTF-8", 
+                    "osx":{}
                 },
-                { 
-                    "name": "Run",
-                    "shell": true,
-                    "cmd" : [
-                        "start","cmd","/c",
-                        "java -cp ${project_path}/bin ${file} &echo. & pause"
-                    ],
+                {
+                    "name": "Run", 
+                    "shell": true, 
+                    "cmd" : ["start","cmd","/c",
+                        "java -cp ${project_path}/bin --module-path %PATH_TO_FX% --add-modules javafx.controls ${file} &echo. & pause"
+                    ], 
                     "working_dir": "${file_path}",
-                    "encoding":"UTF-8"
+                    "encoding":"UTF-8" ,
+                    "osx":{}
                 }
             ] 
         }
+
     ]
 }
