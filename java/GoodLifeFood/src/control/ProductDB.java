@@ -1,25 +1,18 @@
+package control;
+
+import product.Product;
 
 public class ProductDB {
 
     private ProductDB(){
     }
 
+    @SuppressWarnings("deprecation")
     public static Product getProduct(String name){
-        Product p;
-
-        switch(name){
-            case "vegetable":
-                p = new Product("vegetable", 100);
-                break;
-            case "healthy cake":
-                p = new Product("healthy cake", 200);
-                break;
-            case "fruit":
-                p = new Product("fruit", 50);
-                break;
-            default:
-                p = new Product();
+        try{
+            return (Product)Class.forName("product." + name).newInstance();
+        }catch(Exception e){
+            return null;
         }
-        return p;
     }
 }   
