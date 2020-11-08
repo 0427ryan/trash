@@ -5,33 +5,21 @@ import java.math.BigDecimal;
 public class Cake extends Product{
 	
     protected String message;
-    protected int quantity;
 
     static{
         priceInSingle = new BigDecimal("100");
     }
 
-    @Override
-    public void setQuantity(Number q){
-        quantity = q.intValue();
-    }
-
-    protected void calculateCost(){
-        cost = priceInSingle.multiply(new BigDecimal(quantity));
-    }
-
 	public Cake(){
-        this.quantity = 0;
-        this.message  = "";
+        this(0);
 	}
 
     public Cake(int quantity){
-        this.quantity = quantity;
-        this.message  = "";
+        this(quantity, "");
     }
 
 	public Cake(int quantity, String message){
-        this.quantity = quantity;
+        this.quantity = new BigDecimal(quantity);
         this.message  = message;
     }
 
@@ -41,7 +29,7 @@ public class Cake extends Product{
         System.out.println("Name         :" + getName());
         System.out.println("Message      :" + message);
         System.out.println("Single price :" + priceInSingle);
-        System.out.println("Quantuty     :" + quantity);
+        System.out.println("Quantuty     :" + quantity + ' ' + quantifier);
         System.out.println("Total cost   :" + cost);
     }
 }
