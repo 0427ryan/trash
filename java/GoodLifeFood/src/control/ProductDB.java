@@ -1,18 +1,37 @@
 package control;
 
-import product.Product;
+import product.*;
 
 public class ProductDB {
+
+    // private static Product[] productList = {
+        // new HealthyCake(),
+        // new Fruit(),
+        // new Vegetable()
+    // };
+
+    private static StringBuilder pre = new StringBuilder("product.");
 
     private ProductDB(){
     }
 
-    @SuppressWarnings("deprecation")
-    public static Product getProduct(String name){
-        try{
-            return (Product)Class.forName("product." + name).newInstance();
-        }catch(Exception e){
-            return null;
+    public static Product getProduct(String name, String quantity, String quantifier){
+        Product p;
+
+        if(name.contains(".")){
+            p = new DefaultProduct();
+        }else{
+            try{
+                p = (Product)Class.forName("product."+name).
+                    getDeclaredConstructor().newInstance();
+            }catch(Exception e){
+                p = new DefaultProduct();
+            }
         }
+        
+        p.setQuantity(quantity);
+        p.changeQuantifier(quantifier);
+        return p;
     }
+
 }   

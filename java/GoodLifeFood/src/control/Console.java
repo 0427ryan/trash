@@ -1,5 +1,7 @@
+package control;
+
 import java.util.Scanner;
-import java.util.InputMismatchException;
+import java.math.BigDecimal;
 
 public class Console {
 
@@ -14,22 +16,23 @@ public class Console {
         in.nextLine();
         return ret;
     }
-    public static int getuInt(String tell) {
+    public static BigDecimal getBigDecimal(String tell) {
 
-        int ret = -1;
+        BigDecimal ret = new BigDecimal(0);
 
-        while(ret <= 0) {
-            try {
+        do{
+            try{
                 System.out.print(tell);
-                ret = in.nextInt();
-                if(ret <= 0) {
+                ret = new BigDecimal(in.next());
+                in.nextLine();
+                if(ret.doubleValue() <= 0) {
                     System.out.println("請輸入正整數");
                 }
-            } catch(InputMismatchException e) {
+            }catch(Exception e){
                 System.out.println("請輸入正整數");
-                in.nextLine();
             }
-        }
+            
+        }while(ret.doubleValue() <= 0);
 
         return ret;
     }

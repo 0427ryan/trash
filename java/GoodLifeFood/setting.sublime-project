@@ -13,11 +13,12 @@
                 "javac",
                 "-cp","${project_path}/bin",
                 "-encoding","UTF-8",
+                "-g",
                 "-d","${project_path}/bin",
                 "--module-path",
                 "C:\\Program Files\\Java\\javafx-sdk-11.0.2\\lib",
                 "--add-modules","javafx.controls",
-                "$file"
+                "$file_name"
             ], 
             "file_regex": "^(...*?):([0-9]*):?([0-9]*)", 
             "selector": "source.java",
@@ -28,6 +29,7 @@
                     "name":"compile package",
                     "cmd": ["javac",
                         "-cp","${project_path}/bin",
+                        "-g",
                         "--module-path",
                         "C:\\Program Files\\Java\\javafx-sdk-11.0.2\\lib",
                         "--add-modules","javafx.controls",
@@ -42,8 +44,10 @@
                 },
                 {
                     "name":"compile all",
+                    "working_dir":"{$project_path}/src", 
                     "cmd": ["javac",
                         "-cp","${project_path}/bin",
+                        "-g",
                         "--module-path",
                         "C:\\Program Files\\Java\\javafx-sdk-11.0.2\\lib",
                         "--add-modules","javafx.controls",
@@ -55,9 +59,8 @@
                         "ui/*.java"
             // *********************************************************
                     ], 
-                    "file_regex": "^(...*?):([0-9]*):?([0-9]*)", 
+                    "file_regex": "^[\\s]+\\(...*?):([0-9]*):?([0-9]*)", 
                     "selector": "source.java",
-                    "working_dir":"{$project_path/src}", 
                     "encoding":"UTF-8", 
                     "osx":{}
                 },
