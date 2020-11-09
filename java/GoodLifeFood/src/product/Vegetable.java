@@ -1,14 +1,13 @@
 package product;
 
-public class Vegetable {
-	
-    int price;
-    int quantity;
-	
+import java.math.BigDecimal;
+import static java.math.MathContext.DECIMAL32;
+
+public class Vegetable extends ProductCountableByWeight{
+
+
 	public Vegetable(){
-		
+        perWeight = new BigDecimal("0.5");
+        priceInSingle = new BigDecimal("222");
 	}
-	public String getName(){
-        return this.getClass().getName();
-    }
 }

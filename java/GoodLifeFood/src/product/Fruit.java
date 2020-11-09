@@ -1,16 +1,12 @@
 package product;
 
-public abstract class Fruit extends Product{
-	
-	int price;
-	int quantity;
+import java.math.BigDecimal;
+import static java.math.MathContext.DECIMAL32;
 
-	protected Fruit(){
-	}
+public class Fruit extends ProductCountableByWeight{
 
-	public abstract int getPrice();
-
-    public String getName(){
-        return "Fruit";
+    public Fruit(){
+        perWeight = new BigDecimal("1.2");
+        priceInSingle = new BigDecimal("333");
     }
 }
