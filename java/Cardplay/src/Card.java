@@ -1,8 +1,8 @@
 public class Card {
-	private int number;
+	private Num number;
 	private Kind kind;
 
-	public Card(int number, Kind kind){
+	public Card(Num number, Kind kind){
 		this.number = number;
 		this.kind = kind;
 	}
@@ -17,26 +17,11 @@ public class Card {
 	}
 	
 	public int getPriority(){
-		int kindPriority = 0;
-		switch(this.kind){
-			case SPADE:
-				kindPriority = 1;
-				break;
-			case DIAMOND:
-				kindPriority = 2;
-				break;
-			case HEART:
-				kindPriority = 3;
-				break;
-			case CLUB:
-				kindPriority = 4;
-				break;
-		}
-		return this.number * 4 + kindPriority;
+		return number.getPriority() * 4 + kind.getPriority();
 	}
 
 	public String toString(){
-		return this.kind.toString() + this.number;  
+		return this.kind.toString() + " " + this.number.toString();  
 	}
 
 }
