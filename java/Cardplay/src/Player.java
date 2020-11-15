@@ -12,14 +12,22 @@ public class Player {
         this.name = name;
     }
     public boolean addGame(CardGame game){
-        if( nowPlaying == null ){
+        if( nowPlaying == null && !game.addPlayer()){
             return false;
         }
-        nowPlaying = game;
-        game.addPlayer(this);
+        this.nowPlaying = game;
         return true;
     }
-    public boolean throwCard(Card card){
-        return holdedCard.remove(card);
+
+    public boolean removeGame(CardGame game){
+        if( nowPlaying == game ){
+            nowPlaying = null;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean printCard(){
+        
     }
 }

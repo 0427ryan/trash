@@ -20,6 +20,10 @@ public class Card {
 		return number.getPriority() * 4 + kind.getPriority();
 	}
 
+	public int getNumber(){
+		return number.getPriority() * 4 + kind.getPriority();
+	}
+
 	public String toString(){
 		return this.kind.toString() + " " + this.number.toString();  
 	}
