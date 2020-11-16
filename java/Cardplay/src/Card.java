@@ -21,11 +21,10 @@ public class Card {
 	}
 
 	public int getNumber(){
-		return number.getPriority() * 4 + kind.getPriority();
+		return number.getPriority();
 	}
-
+	@Override
 	public String toString(){
 		return this.kind.toString() + " " + this.number.toString();  
 	}
-
 }
