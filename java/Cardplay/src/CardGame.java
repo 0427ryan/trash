@@ -18,8 +18,7 @@ public class CardGame {
     private CardGame(int maxPlayerNumber, Player host, Player... guestPlayers) {
         addGuest(guestPlayers);
         cards = new DeckOfCards();
-        this.host = host;
-        host.addGame(this);
+        changeHost(host);
         this.maxPlayerNumber = maxPlayerNumber;
     }
 
@@ -36,7 +35,11 @@ public class CardGame {
     }
 
     public void changeHost(Player host) {
+        if(this.host != null){
+            this.host.removeGame(this);
+        }
         this.host = host;
+        host.addGame(this);
     }
 
     public void addGuest(Player... guestPlayers) {
@@ -61,7 +64,8 @@ public class CardGame {
 
     public boolean addGuest(Player player) {
         if( guestPlayers.contains(player) &&
-                getPlayerNumber() < maxPlayerNumber ) {
+            getPlayerNumber() < maxPlayerNumber ) {
+
             return false;
         }
         this.guestPlayers.add(player);
@@ -77,8 +81,6 @@ public class CardGame {
         return cards;
     }
 
-    // TODO: Player 拿牌、亮牌
-    // TODO: Console print getstring
     public void play() {
 
         if(host == null) {
@@ -105,24 +107,18 @@ public class CardGame {
         cards = new DeckOfCards();
         cards.shuffle();
 
-        for(Player p : guestPlayers) {
-            p.clearCards();
-        }
+        guestPlayers.forEach( p -> p.clearCards() );
+
         host.clearCards();
     }
     protected void firstRoundTakeCard() {
 
         host.takeCard();
-        for(Player p : guestPlayers) {
-            p.takeCard();
-        }
-        for(Player p : guestPlayers) {
-            p.takeCard();
 
-        }
-        for(Player p : guestPlayers) {
-            System.out.println( p );
-        }
+        guestPlayers.forEach(p -> { p.takeCard(); p.takeCard(); });
+
+        guestPlayers.forEach(p -> System.out.println(p) );
+
         System.out.println();
     }
 
@@ -132,6 +128,7 @@ public class CardGame {
 
             System.out.println( p.getName() + " sum: " + p.getSum() );
             System.out.println(p.getName() + " 是否加牌? (y/n) ");
+
             while( p.getSum() <= 21 && in.nextLine().equalsIgnoreCase("y") ) {
                 p.takeCard();
 
@@ -153,11 +150,11 @@ public class CardGame {
         System.out.println( host.getName() + " sum: " + host.getSum() );
         System.out.print( host.getName() + " 是否加牌? (y/n) " );
         while( host.getSum() <= 21 && in.nextLine().equalsIgnoreCase("y") ) {
-            host.takeCard(); // 明牌
+            host.takeCard();
 
             System.out.println( host.getName() + " sum: " + host.getSum() );
             if(host.getSum() <= 21) {
-                System.out.println( host.getName() + " 是否加牌? (y/n) " );
+                System.out.print( host.getName() + " 是否加牌? (y/n) " );
             }
         }
         System.out.println();
@@ -165,20 +162,19 @@ public class CardGame {
 
     protected void everyoneShowCard() {
         System.out.println(host);
-        for(Player p : guestPlayers) {
-            System.out.println(p);
-        }
+
+        guestPlayers.forEach( p -> System.out.println(p) );
+
         System.out.println();
     }
 
     protected void showResult() {
         for(Player p : guestPlayers) {
+
             System.out.println(p.getName() + " sum = " + p.getSum());
-            if(
-                ( p.getSum() <= 21 ) &&
-                ( host.getSum() > 21 || p.getSum() >
-                  host.getSum())
-            ) {
+            if(  p.getSum() <= 21 &&
+               ( host.getSum() > 21 || p.getSum() > host.getSum() ) ) {
+
                 System.out.println(p.getName() + " Win");
             } else {
                 System.out.println(p.getName() + " Lose");
