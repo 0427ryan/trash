@@ -20,8 +20,11 @@ public class Card {
 		return number.getPriority() * 4 + kind.getPriority();
 	}
 
+	public int getNumber(){
+		return number.getPriority();
+	}
+	@Override
 	public String toString(){
 		return this.kind.toString() + " " + this.number.toString();  
 	}
-
 }
