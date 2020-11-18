@@ -8,7 +8,7 @@ public class CardGame {
     public DeckOfCards cards;
 
     public CardGame() {
-        this(4, null, new Player[] {});
+        this(4, null, new Player[]{});
     }
 
     public CardGame(Player host, Player... guestPlayers) {
@@ -118,10 +118,10 @@ public class CardGame {
         }
         for(Player p : guestPlayers) {
             p.takeCard();
-            
+
         }
         for(Player p : guestPlayers) {
-        	System.out.println( p );
+            System.out.println( p );
         }
         System.out.println();
     }
@@ -166,7 +166,7 @@ public class CardGame {
     protected void everyoneShowCard() {
         System.out.println(host);
         for(Player p : guestPlayers) {
-        	System.out.println(p);
+            System.out.println(p);
         }
         System.out.println();
     }
@@ -177,7 +177,7 @@ public class CardGame {
             if(
                 ( p.getSum() <= 21 ) &&
                 ( host.getSum() > 21 || p.getSum() >
-                 host.getSum())
+                  host.getSum())
             ) {
                 System.out.println(p.getName() + " Win");
             } else {

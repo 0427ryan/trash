@@ -6,6 +6,6 @@ public class CardGameApp {
             new Player("guess 1"),
             new Player("guess 2"),
             new Player("guess 3")
-            ).play();
+        ).play();
     }    
 }
