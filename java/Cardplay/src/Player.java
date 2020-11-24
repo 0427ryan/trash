@@ -30,16 +30,16 @@ public class Player {
         return false;
     }
 
-    public void takeCard(){
+    public void takeCard(CardGameView cv){
         if(nowPlaying != null){
             Card c = nowPlaying.getCards().getFirst();
             holdedCard.add( c );
-            System.out.println(name + " get " + c);
-            addCardToSum(c);
+            cv.println(name + " get " + c);
+            addCardToSum(c, cv);
         }
     }
 
-    public void printCard(){
+    public void printCard(CardGameView cv){
         for (Card c : holdedCard) {
             System.out.println(c);
         }
@@ -53,36 +53,36 @@ public class Player {
         return name;
     }
 
-    protected void addCardToSum(Card c){
+    protected void addCardToSum(Card c, CardGameView cv){
 
         if(c.getNumber() >= 10){
             sum += 10;
             return;
         }
         if(c.getNumber() == 1){
-            sum += dealWithOne();
+            sum += dealWithOne(cv);
             return;
         }
         sum += c.getNumber();
     }
 
-    private int dealWithOne(){
+    private int dealWithOne(CardGameView cv){
         Scanner in = new Scanner(System.in);
         int sum = 0;
-        System.out.println(name);
-        System.out.println("This is Ace, choose 1 or 11");
+        cv.println(name);
+        cv.println("This is Ace, choose 1 or 11");
         while(true){
             try{
                 int temp;
                 temp = in.nextInt();
                 if(temp != 1 && temp != 11){
-                    System.out.println("Please enter again.");
+                    cv.println("Please enter again.");
                     continue;
                 }
                 sum += temp;
                 return sum;
             }catch(Exception e){
-                System.out.println("Please enter again.");
+                cv.println("Please enter again.");
                 in.nextLine();
             }
         }
@@ -91,6 +91,7 @@ public class Player {
         this.holdedCard.clear();
         sum = 0;
     }
+
     public String toString(){
         StringBuilder sb = new StringBuilder(name);
         for(Card c : holdedCard){

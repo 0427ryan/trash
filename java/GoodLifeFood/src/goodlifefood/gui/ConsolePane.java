@@ -22,5 +22,4 @@ public class ConsolePane extends HBox{
         setSpacing(10.0);
         this.getChildren().addAll(input, ok);
     }
-    
 }
