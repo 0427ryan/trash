@@ -1,3 +1,5 @@
+package card;
+
 public enum Kind {
 	SPADE(1),
 	DIAMOND(2),

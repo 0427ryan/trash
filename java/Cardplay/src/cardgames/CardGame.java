@@ -1,26 +1,34 @@
+package cardgames;
+
+import player.Player;
+import card.DeckOfCards;
+import deta.AccountDB;
+
+import java.util.List;
 import java.util.LinkedList;
 
 public abstract class CardGame {
     
     protected final int maxPlayerNumber;
+    protected AccountDB db;
     protected Player host;
-    protected LinkedList<Player> guestPlayers = new LinkedList<>();
+    protected List<Player> guestPlayers = new LinkedList<>();
     protected DeckOfCards cards;
     protected CardGameView cv;
 
     public CardGame() {
-        this(4, null, new Player[]{});
+        this(4, null, null, new Player[]{});
     }
 
-    public CardGame(Player host, Player... guestPlayers) {
-        this(4, host, guestPlayers);
+    public CardGame(AccountDB db, Player host, Player... guestPlayers) {
+        this(4, db, host, guestPlayers);
     }
 
-    public CardGame(int maxPlayerNumber, Player host, Player... guestPlayers) {
-        addGuest(guestPlayers);
-        cards = new DeckOfCards();
-        changeHost(host);
+    public CardGame(int maxPlayerNumber,AccountDB db,  Player host, Player... guestPlayers) {
         this.maxPlayerNumber = maxPlayerNumber;
+        this.db = db;
+        changeHost(host);
+        addGuest(guestPlayers);
     }
 
     public boolean contains(Player player) {
@@ -48,30 +56,39 @@ public abstract class CardGame {
             this.addGuest(p);
         }
     }
+    public void addGuest(Player player) {
+        if( this.contains(player) ||
+            getPlayerNumber() == maxPlayerNumber ||
+            player == null) {
+            return;
+        }
+        this.guestPlayers.add(player);
+        player.addGame(this);
+        return;
+    }
 
+    public void checkAccount(){
+        if(host != null && host.getAccountNumber() == null){
+            host.setAccountNumber(db.newAccount(host.getName()));
+        }
+        for(Player p : guestPlayers){
+            if(p.getAccountNumber() == null){
+                p.setAccountNumber(db.newAccount(p.getName()));
+            }
+        }
+    }
+    
     public void removeGuest(Player... guestPlayers) {
         for(Player p : guestPlayers) {
             this.removeGuest(p);
         }
     }
 
-    public boolean removeGuest(Player guestPlayer) {
+    public void removeGuest(Player guestPlayer) {
         if( this.guestPlayers.remove(guestPlayer) ) {
             guestPlayer.removeGame(this);
-            return true;
         }
-        return false;
-    }
-
-    public boolean addGuest(Player player) {
-        if( guestPlayers.contains(player) &&
-            getPlayerNumber() < maxPlayerNumber ) {
-
-            return false;
-        }
-        this.guestPlayers.add(player);
-        player.addGame(this);
-        return true;
+        return;
     }
 
     public int getPlayerNumber() {
@@ -86,7 +103,7 @@ public abstract class CardGame {
         return host;
     }
 
-    public LinkedList<Player> getGuestPlayers(){
+    public List<Player> getGuestPlayers(){
         return guestPlayers;
     }
 

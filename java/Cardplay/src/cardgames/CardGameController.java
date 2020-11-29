@@ -1,3 +1,7 @@
+package cardgames;
+
+import player.Player;
+
 import java.util.Scanner;
 
 public class CardGameController {
@@ -14,8 +18,16 @@ public class CardGameController {
         c.play(this);
     }
 
+    public boolean check(){
+        if(c.getHost() == null){
+            return false;
+        }
+        c.checkAccount();
+        return true;
+    }
+
     protected void firstRoundTakeCard() {
-        System.out.println(123);
+        
         c.getHost().takeCard(cv);
 
         c.getGuestPlayers().forEach(p -> { p.takeCard(cv); p.takeCard(cv); });
@@ -65,11 +77,11 @@ public class CardGameController {
     }
 
     protected void everyoneShowCard() {
-        cv.println(c.getHost().toString());
+        cv.println(c.getHost());
 
-        c.getGuestPlayers().forEach( p -> cv.println(p.toString()) );
+        c.getGuestPlayers().forEach( p -> cv.println(p) );
 
-        c.getGuestPlayers().forEach( p -> cv.println(p.toString()) );
+        c.getGuestPlayers().forEach( p -> cv.println(p) );
 
         cv.println();
     }

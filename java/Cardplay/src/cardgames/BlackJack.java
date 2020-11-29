@@ -1,3 +1,9 @@
+package cardgames;
+
+import player.Player;
+import card.DeckOfCards;
+import deta.AccountDB;
+
 import java.util.Scanner;
 
 public class BlackJack extends CardGame {
@@ -5,20 +11,21 @@ public class BlackJack extends CardGame {
     public BlackJack() {
 
     }
-    public BlackJack(Player host, Player... guestPlayers) {
-        this(4, host, guestPlayers);
+    public BlackJack(AccountDB db, Player host, Player... guestPlayers) {
+        this(4, db, host, guestPlayers);
     }
 
-    private BlackJack(int maxPlayerNumber, Player host, Player... guestPlayers){
-        super(maxPlayerNumber, host, guestPlayers);
+    private BlackJack(int maxPlayerNumber,AccountDB db,  Player host, Player... guestPlayers){
+        super(maxPlayerNumber, db, host, guestPlayers);
     }
+
     @Override
     public void play(CardGameController cgc) {
 
-        if(host == null) {
-            System.out.println("There are no host, game end");
+        if( !cgc.check() ){
             return;
         }
+        
 
         init();
 

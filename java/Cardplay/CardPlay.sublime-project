@@ -7,6 +7,15 @@
 	],
     "build_systems":[
         {
+            "name":"compile all",
+            "cmd": [
+                "javac","-cp","${project_path}/bin","-g","-encoding","UTF-8","-d","${project_path}/bin",
+                "card/*.java","cardgames/*.java","deta/*.java","player/*.java","*.java"
+            ], 
+            "file_regex": "^(...*?):([0-9]*):?([0-9]*)", 
+            "selector": "source.java",
+            "encoding":"UTF-8", 
+            "working_dir":"${project_path}/src"
         }
     ],
     "settings":{

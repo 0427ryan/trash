@@ -1,11 +1,19 @@
+package player;
 
+import cardgames.CardGame;
+import cardgames.CardGameView;
+import card.Card;
+
+import java.util.List;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Player {
+
+    private Integer acctNum;
     private String name;
     private CardGame nowPlaying = null;
-    private LinkedList<Card> holdedCard = new LinkedList<>();
+    private List<Card> holdedCard = new LinkedList<>();
     private int sum;
 
     public Player(){
@@ -43,6 +51,14 @@ public class Player {
         for (Card c : holdedCard) {
             System.out.println(c);
         }
+    }
+
+    public void setAccountNumber(Integer acctNum){
+        this.acctNum = acctNum;
+    }
+
+    public Integer getAccountNumber(){
+        return acctNum;
     }
 
     public int getSum(){
