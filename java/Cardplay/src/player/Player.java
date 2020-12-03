@@ -16,14 +16,16 @@ public class Player {
     private List<Card> holdedCard = new LinkedList<>();
     private int sum;
 
-    public Player(){
+    public Player(){ // default constructor 
         this.name = "unnamed player";
     }
+
     public Player(String name){
         this.name = name;
     }
+
     public boolean addGame(CardGame game){
-        if( nowPlaying == null && game.contains(this)) {
+        if( nowPlaying == null && game.contains(this)) { //check
             this.nowPlaying = game;
             return true;
         }

@@ -7,7 +7,7 @@ import account.AccountDB;
 import java.util.List;
 import java.util.LinkedList;
 
-public abstract class CardGame {
+public class CardGame {
     
     protected final int maxPlayerNumber;
     protected AccountDB db;
@@ -57,7 +57,8 @@ public abstract class CardGame {
         }
     }
     public void addGuest(Player player) {
-        if( this.contains(player) ||
+        //check wheater the player can be apply, if not, enter the block(return).
+        if( this.contains(player) ||   
             getPlayerNumber() == maxPlayerNumber ||
             player == null) {
             return;
@@ -68,6 +69,7 @@ public abstract class CardGame {
     }
 
     public void checkAccount(){
+        // check wheather players have an account, if no, give them one. 
         if(host != null && host.getAccountNumber() == null){
             host.setAccountNumber(db.newAccount(host.getName()));
         }
@@ -91,6 +93,10 @@ public abstract class CardGame {
         return;
     }
 
+    public void refreshCards(){
+        cards = new DeckOfCards();
+    }
+
     public int getPlayerNumber() {
         return guestPlayers.size() + (host == null ? 0 : 1);
     }
@@ -106,6 +112,4 @@ public abstract class CardGame {
     public List<Player> getGuestPlayers(){
         return guestPlayers;
     }
-
-    public abstract void play(CardGameController cgc);
 }

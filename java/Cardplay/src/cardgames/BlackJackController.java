@@ -4,30 +4,55 @@ import player.Player;
 
 import java.util.Scanner;
 
-public class CardGameController {
+public class BlackJackController {  //DB is not used,
 
     CardGameView cv;
     CardGame c;
 
-    public CardGameController(CardGame c, CardGameView cv){
+    public BlackJackController(CardGame c, CardGameView cv) {
         this.c = c;
         this.cv = cv;
     }
 
-    public void run(){
-        c.play(this);
-    }
+    public void run() {
+        if( !checkOK() ) {
+            return;
+        }
+        init();
 
-    public boolean check(){
-        if(c.getHost() == null){
+        firstRoundTakeCard();
+
+        guestTakeCard();
+
+        hostTakeCard();
+
+        everyoneShowCard();
+
+        showResult();
+
+        return;
+    }
+    public boolean checkOK() {
+        if(c.getHost() == null) {
             return false;
         }
         c.checkAccount();
         return true;
     }
 
+    protected void init() {
+
+        c.refreshCards();
+
+        c.getCards().shuffle();
+
+        c.getGuestPlayers().forEach( p -> p.clearCards() );
+
+        c.getHost().clearCards();
+    }
+
     protected void firstRoundTakeCard() {
-        
+
         c.getHost().takeCard(cv);
 
         c.getGuestPlayers().forEach(p -> { p.takeCard(cv); p.takeCard(cv); });
@@ -92,7 +117,7 @@ public class CardGameController {
 
             cv.println(p.getName() + " sum = " + p.getSum());
             if(  p.getSum() <= 21 &&
-                (host.getSum() > 21 || p.getSum() > host.getSum()) ) {
+                    (host.getSum() > 21 || p.getSum() > host.getSum()) ) {
 
                 cv.println(p.getName() + " Win");
             } else {
