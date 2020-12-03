@@ -2,7 +2,7 @@ package cardgames;
 
 import player.Player;
 import card.DeckOfCards;
-import deta.AccountDB;
+import account.AccountDB;
 
 import java.util.Scanner;
 

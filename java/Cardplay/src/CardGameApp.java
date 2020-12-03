@@ -1,6 +1,6 @@
 import cardgames.*;
 import player.Player;
-import deta.AccountDB;
+import account.AccountDB;
 
 public class CardGameApp {
     public static void main(String[] args){
