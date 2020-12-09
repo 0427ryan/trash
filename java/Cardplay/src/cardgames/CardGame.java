@@ -14,7 +14,6 @@ public class CardGame {
     protected Player host;
     protected List<Player> guestPlayers = new LinkedList<>();
     protected DeckOfCards cards;
-    protected CardGameView cv;
 
     public CardGame() {
         this(4, null, null, new Player[]{});

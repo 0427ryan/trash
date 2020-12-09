@@ -40,12 +40,9 @@ public class Player {
         return false;
     }
 
-    public void takeCard(CardGameView cv){
-        if(nowPlaying != null){
-            Card c = nowPlaying.getCards().getFirst();
-            holdedCard.add( c );
-            cv.println(name + " get " + c);
-            addCardToSum(c, cv);
+    public void addCard(Card c){
+        if(nowPlaying != null && c != null){
+            holdedCard.add(c);
         }
     }
 
@@ -63,48 +60,19 @@ public class Player {
         return acctNum;
     }
 
-    public int getSum(){
-        return sum;
-    }
-
     public String getName(){
         return name;
     }
 
-    protected void addCardToSum(Card c, CardGameView cv){
 
-        if(c.getNumber() >= 10){
-            sum += 10;
-            return;
-        }
-        if(c.getNumber() == 1){
-            sum += dealWithOne(cv);
-            return;
-        }
-        sum += c.getNumber();
+    public int getSum(){
+        return sum;
     }
 
-    private int dealWithOne(CardGameView cv){
-        Scanner in = new Scanner(System.in);
-        int sum = 0;
-        cv.println(name);
-        cv.println("This is Ace, choose 1 or 11");
-        while(true){
-            try{
-                int temp;
-                temp = in.nextInt();
-                if(temp != 1 && temp != 11){
-                    cv.println("Please enter again.");
-                    continue;
-                }
-                sum += temp;
-                return sum;
-            }catch(Exception e){
-                cv.println("Please enter again.");
-                in.nextLine();
-            }
-        }
+    public void setSum(int sum){
+        this.sum = sum;
     }
+    
     public void clearCards(){
         this.holdedCard.clear();
         sum = 0;

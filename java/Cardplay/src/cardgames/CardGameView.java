@@ -1,7 +1,6 @@
 package cardgames;
 
-public class CardGameView {
-    
+public class CardGameView{
     
     public CardGameView(){
         
