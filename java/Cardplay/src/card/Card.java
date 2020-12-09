@@ -1,3 +1,5 @@
+package card;
+
 public class Card {
 	private Num number;
 	private Kind kind;

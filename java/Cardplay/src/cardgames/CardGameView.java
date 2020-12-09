@@ -1,16 +1,16 @@
+package cardgames;
 
-public class CardGameView {
-    
+public class CardGameView{
     
     public CardGameView(){
         
     }
 
-    public void print(String s){
+    public void print(Object s){
         System.out.print(s);
     }
     
-    public void println(String s){
+    public void println(Object s){
         System.out.println(s);
     }
     public void println(){
