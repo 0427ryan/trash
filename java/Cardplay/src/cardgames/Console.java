@@ -5,9 +5,11 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
 public class Console {
-
+    /*
+        this class is used to get input, the Scanner inside can be change.
+    */
     private Scanner in = new Scanner(System.in);
-    private CardGameView err;
+    private CardGameView err = new CardGameView();
 
     public Console(){
     }
@@ -17,11 +19,28 @@ public class Console {
         this.err = err;
     }
 
+    public Scanner getScanner(){
+        return in;
+    }
+
+    public void setScanner(Scanner in){
+        this.in = in;
+    }
+
+    public CardGameView getErr(){
+        return err;
+    }
+
+    public void setErr(CardGameView err){
+        this.err = err;
+    }
+
     public int nextInt(){
         int ret;
         while(true){
             try{
                 ret = in.nextInt();
+                in.nextLine();
                 return ret;
             }catch(InputMismatchException e){
                 err.println("Please enter interger.");
@@ -35,6 +54,7 @@ public class Console {
         while(true){
             try{
                 ret = in.nextInt();
+                in.nextLine();
                 if(ret >= 0){
                     return ret;
                 }
@@ -61,16 +81,13 @@ public class Console {
     public String nextString(String... regexs){
         String ret;
         while(true){
-            try{
-                ret = in.nextLine();
-                for(String i : regexs){
-                    if(ret.matches(i)){
-                        return ret;
-                    }
+            ret = in.nextLine();
+            for(String i : regexs){
+                if(ret.matches(i)){
+                    return ret;
                 }
-            }catch(Exception e){
-                err.println("Please enter correctly.");
             }
+            err.println("Please enter correctly.");
         }
     }
 }
