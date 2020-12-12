@@ -124,7 +124,7 @@ public class BlackJackController {
 
         cv.println(c.getHost());
 
-        for(Player p : c.getGuestPlayers()){
+        for(Player p : c.getGuestPlayers()) {
             playerAddCard(p);
             playerAddCard(p);
             cv.println(p);
@@ -189,9 +189,9 @@ public class BlackJackController {
         */
         cv.println(c.getHost());
 
-        c.getGuestPlayers().forEach( p -> cv.println(p) );
+        c.getGuestPlayers().forEach( cv::println );
 
-        c.getGuestPlayers().forEach( p -> cv.println(p) );
+        c.getGuestPlayers().forEach( cv::println );
 
         cv.println();
     }
@@ -207,12 +207,14 @@ public class BlackJackController {
 
             cv.println(p.getName() + " sum = " + p.getSum());
             if(  p.getSum() <= 21 &&
-                    (host.getSum() > 21 || p.getSum() > host.getSum()) ) {
+                 (host.getSum() > 21 || p.getSum() > host.getSum()) ) {
 
                 cv.println(p.getName() + " Win");
             } else {
                 cv.println(p.getName() + " Lose");
             }
+
         }
+
     }
 }
