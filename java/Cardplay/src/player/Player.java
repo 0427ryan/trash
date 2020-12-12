@@ -71,9 +71,7 @@ public class Player {
     }
 
     public void printCard(CardGameView cv){
-        for (Card c : holdedCard) {
-            System.out.println(c);
-        }
+        holdedCard.forEach( cv::println );
     }
 
     public void setAccountNumber(Integer acctNum){
@@ -107,9 +105,9 @@ public class Player {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder(name);
-        for(Card c : holdedCard){
-            sb.append("\n\t").append(c);
-        }
+        
+        holdedCard.forEach( c -> sb.append("\n\t").append(c) );
+
         return sb.toString();
     }
 }
