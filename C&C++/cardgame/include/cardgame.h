@@ -24,19 +24,19 @@ public:
 
     void changeHost(Player *) ;
 
-    inline void addGuest(std::initializer_list<Player *>) ;
+    void addGuest(std::initializer_list<Player *>) ;
     void addGuest(Player *player);
 
-    inline void removeGuest(std::initializer_list<Player *> guestPlayers);
+    void removeGuest(std::initializer_list<Player *> guestPlayers);
 
     void removeGuest(Player *guestPlayer) ;
 
-    inline void refreshCards() ;
+    void refreshCards() ;
 
-    inline int getPlayerNumber();
+    int getPlayerNumber();
 
-    inline Deck *getCards();
+    Deck *getCards();
 
-    inline Player *getHost();
-    inline std::vector<Player*> getGuestPlayers();
+    Player *getHost();
+    std::vector<Player*> getGuestPlayers();
 };

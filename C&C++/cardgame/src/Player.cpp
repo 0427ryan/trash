@@ -26,7 +26,7 @@ bool Player::removeGame(CardGame *game) {
     return false;
 }
 
-inline void Player::addCard(Card *c) {
+void Player::addCard(Card *c) {
     /*
         this is is used to add new card.
     */
@@ -35,15 +35,15 @@ inline void Player::addCard(Card *c) {
     }
 }
 
-inline std::string Player::getName() const {
+std::string Player::getName() const {
     return this->name;
 }
 
-inline void Player::setSum(int sum) {
+void Player::setSum(int sum) {
     this->sum = sum;
 }
 
-inline int Player::getSum() const {
+int Player::getSum() const {
     return sum;
 }
 
@@ -56,7 +56,7 @@ void Player::clearCards() {
     this->sum = 0;
 }
 
-inline std::string Player::tostring() const {
+std::string Player::tostring() const {
     std::string ret = this->name;
 
     for(Card *c : holdedCards) {

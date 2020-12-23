@@ -35,7 +35,7 @@ void CardGame::changeHost(Player *host) {
     host->addGame(this);
 }
 
-inline void CardGame::addGuest(std::initializer_list<Player *> guestPlayers) {
+void CardGame::addGuest(std::initializer_list<Player *> guestPlayers) {
     for(Player *p : this->guestPlayers) {
         this->addGuest(p);
     }
@@ -52,7 +52,7 @@ void CardGame::addGuest(Player *player) {
     return;
 }
 
-inline void CardGame::removeGuest(std::initializer_list<Player *> guestPlayers) {
+void CardGame::removeGuest(std::initializer_list<Player *> guestPlayers) {
     for(Player *p : this->guestPlayers) {
         this->removeGuest(p);
     }
@@ -68,25 +68,25 @@ void CardGame::removeGuest(Player *guestPlayer) {
     }
 }
 
-inline void CardGame::refreshCards() {
+void CardGame::refreshCards() {
     if(this->cards != nullptr) {
         delete cards;
     }
     cards = new Deck();
 }
 
-inline int CardGame::getPlayerNumber() {
+int CardGame::getPlayerNumber() {
     return guestPlayers.size() + (host == nullptr ? 0 : 1);
 }
 
-inline Deck *CardGame::getCards() {
+Deck *CardGame::getCards() {
     return cards;
 }
 
-inline Player *CardGame::getHost() {
+Player *CardGame::getHost() {
     return host;
 }
 
-inline std::vector<Player*> CardGame::getGuestPlayers() {
+std::vector<Player*> CardGame::getGuestPlayers() {
     return this->guestPlayers;
 }

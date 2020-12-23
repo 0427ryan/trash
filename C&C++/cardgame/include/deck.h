@@ -15,6 +15,6 @@ public:
     Deck();
     ~Deck();
 
-    inline void shuffle();
-    inline Card *getFirst();
+    void shuffle();
+    Card *getFirst();
 };

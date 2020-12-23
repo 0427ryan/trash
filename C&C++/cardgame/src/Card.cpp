@@ -59,8 +59,7 @@ Card::Card(const Card &c):
     kind(c.getKind()), num(c.getNum()) { }
 
 inline std::string Card::tostring() const {
-    return "Kind : " + my_util::toString(this->kind)
-           + " Num : " + my_util::toString(this->num );
+    return my_util::toString(this->kind) + my_util::toString(this->num );
 }
 
 inline int Card::getPriority() const {
