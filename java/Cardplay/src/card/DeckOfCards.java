@@ -5,7 +5,6 @@ import java.util.LinkedList;
 
 public class DeckOfCards {
     LinkedList<Card> cards;
-    int index;
 
     public DeckOfCards(){
         cards = new LinkedList<>();
