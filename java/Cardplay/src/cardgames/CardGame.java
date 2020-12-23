@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.LinkedList;
 
 public class CardGame {
-    
+    /*
+        this class contains the element used while game running.
+    */
     protected final int maxPlayerNumber;
     protected AccountDB db;
     protected Player host;

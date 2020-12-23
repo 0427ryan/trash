@@ -5,16 +5,16 @@ import java.util.LinkedList;
 
 public class DeckOfCards {
     LinkedList<Card> cards;
-    int index;
+
     public DeckOfCards(){
         cards = new LinkedList<>();
-        int i = 0;
+
         for(Kind k : Kind.values()){
             for(Num n : Num.values()){
                 cards.add(new Card(n, k));
-                i++;
             }
         } 
+        
     }
     public void shuffle(){
         SecureRandom random = new SecureRandom();

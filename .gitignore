@@ -6,8 +6,14 @@ img
 
 Test.java
 
+*.class
+
+*.exe
+
 *.sublime-workspace
 
 .vscode
 
 *.zip
+
+*.o
