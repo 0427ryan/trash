@@ -9,22 +9,22 @@ import java.util.Scanner;
 public class BlackJackController {
     //DB is not used,
 
-    CardGameView cv;
+    CardGameView view;
     // this is used to show game result and some message while running.
-    CardGame c;
+    CardGame game;
     // this is the game being controlled.
     Console in;
     // this is used to get input.
 
-    public BlackJackController(CardGame c, CardGameView cv) {
+    public BlackJackController(CardGame game, CardGameView view) {
         /*
             get CardGame and CardGameView then fit them into this,
             make a new Console object, tell it where to get message and
             where to print error message.
         */
-        this.c = c;
-        this.cv = cv;
-        this.in = new Console(new Scanner(System.in), cv);
+        this.game = game;
+        this.view = view;
+        this.in = new Console(new Scanner(System.in), view);
     }
 
     protected void playerAddCard(Player p){
@@ -32,9 +32,9 @@ public class BlackJackController {
            if meet number bigger than 10, this will make player's sum added 10,
            if meet Ace, this will call the function dealWithOne. 
         */
-        Card card = c.getCards().getFirst();
+        Card card = game.getCards().getFirst();
         p.addCard(card);
-        cv.println(p.getName() + " gets " + card);
+        view.println(p.getName() + " gets " + card);
         if(card.getNumber() >= 10){
             p.setSum( p.getSum() + 10 );
             return;
@@ -53,12 +53,12 @@ public class BlackJackController {
             to be the number represent the card then return the number player chose
         */
         int sum = 0;
-        cv.println(p.getName());
-        cv.println("This is Ace, choose 1 or 11");
+        view.println(p.getName());
+        view.println("This is Ace, choose 1 or 11");
         while(true){
             sum = in.nextInt();
             if(sum != 1 && sum != 11){
-                cv.println("Please enter 1 or 11.");
+                view.println("Please enter 1 or 11.");
                 continue;
             }
             return sum;
@@ -88,7 +88,7 @@ public class BlackJackController {
 
             return;
         }catch(Exception e){
-            cv.println("Game ended.");
+            view.println("Game ended.");
         }
     }
 
@@ -96,7 +96,7 @@ public class BlackJackController {
         /*
             check if host existed.
         */
-        if(c.getHost() == null) {
+        if(game.getHost() == null) {
             return false;
         }
         return true;
@@ -107,30 +107,30 @@ public class BlackJackController {
             call cardgame to prepare cards, suffle,
             and clear players and host's cards, 
         */
-        c.refreshCards();
+        game.refreshCards();
 
-        c.getCards().shuffle();
+        game.getCards().shuffle();
 
-        c.getGuestPlayers().forEach( p -> p.clearCards() );
+        game.getGuestPlayers().forEach( p -> p.clearCards() );
 
-        c.getHost().clearCards();
+        game.getHost().clearCards();
     }
 
     protected void firstRoundTakeCard() {
         /*
             host takes one card, then each plaayers takes two cards
         */
-        playerAddCard(c.getHost());
+        playerAddCard(game.getHost());
 
-        cv.println(c.getHost());
+        view.println(game.getHost());
 
-        for(Player p : c.getGuestPlayers()) {
+        for(Player p : game.getGuestPlayers()) {
             playerAddCard(p);
             playerAddCard(p);
-            cv.println(p);
+            view.println(p);
         }
 
-        cv.println();
+        view.println();
     }
 
     protected void guestTakeCard() {
@@ -141,23 +141,23 @@ public class BlackJackController {
 
         */
 
-        for(Player p : c.getGuestPlayers()) {
+        for(Player p : game.getGuestPlayers()) {
 
-            cv.println( p.getName() + " sum: " + p.getSum() );
-            cv.print( p.getName() + " 是否加牌? (y/n) ");
+            view.println( p.getName() + " sum: " + p.getSum() );
+            view.print( p.getName() + " 是否加牌? (y/n) ");
 
             while( p.getSum() <= 21 && in.nextString("[yYnN]").equalsIgnoreCase("y") ) {
 
                 playerAddCard(p);
 
-                cv.println( p.getName() + " sum: " + p.getSum() );
+                view.println( p.getName() + " sum: " + p.getSum() );
                 if(p.getSum() <= 21) {
-                    cv.print(p.getName() + " 是否加牌? (y/n) ");
+                    view.print(p.getName() + " 是否加牌? (y/n) ");
                 }
             }
-            cv.println();
+            view.println();
         }
-        cv.println();
+        view.println();
     }
 
     protected void hostTakeCard() {
@@ -167,33 +167,33 @@ public class BlackJackController {
             will exit.
         */
 
-        Player host = c.getHost();
+        Player host = game.getHost();
 
-        cv.println( host.getName() + " sum: " + host.getSum() );
-        cv.print( host.getName() + " 是否加牌? (y/n) " );
+        view.println( host.getName() + " sum: " + host.getSum() );
+        view.print( host.getName() + " 是否加牌? (y/n) " );
 
         while( host.getSum() <= 21 && in.nextString("[yYnN]").equalsIgnoreCase("y") ) {
             playerAddCard(host);
 
-            cv.println( host.getName() + " sum: " + host.getSum() );
+            view.println( host.getName() + " sum: " + host.getSum() );
             if(host.getSum() <= 21) {
-                cv.print( host.getName() + " 是否加牌? (y/n) " );
+                view.print( host.getName() + " 是否加牌? (y/n) " );
             }
         }
-        cv.println();
+        view.println();
     }
 
     protected void everyoneShowCard() {
         /*
             show players and host's detail.
         */
-        cv.println(c.getHost());
+        view.println(game.getHost());
 
-        c.getGuestPlayers().forEach( cv::println );
+        game.getGuestPlayers().forEach( view::println );
 
-        c.getGuestPlayers().forEach( cv::println );
+        game.getGuestPlayers().forEach( view::println );
 
-        cv.println();
+        view.println();
     }
 
     protected void showResult() {
@@ -202,16 +202,16 @@ public class BlackJackController {
             judge everyone is or isn't win, then show it.
         */
 
-        Player host = c.getHost();
-        for(Player p : c.getGuestPlayers()) {
+        Player host = game.getHost();
+        for(Player p : game.getGuestPlayers()) {
 
-            cv.println(p.getName() + " sum = " + p.getSum());
+            view.println(p.getName() + " sum = " + p.getSum());
             if(  p.getSum() <= 21 &&
                  (host.getSum() > 21 || p.getSum() > host.getSum()) ) {
 
-                cv.println(p.getName() + " Win");
+                view.println(p.getName() + " Win");
             } else {
-                cv.println(p.getName() + " Lose");
+                view.println(p.getName() + " Lose");
             }
 
         }
