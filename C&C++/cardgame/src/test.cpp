@@ -1,5 +1,5 @@
 #include <iostream>
-#include "cardgame.h"
+#include "blackjackcontroller.h"
 using namespace std;
 
 int main() {
@@ -10,9 +10,15 @@ int main() {
     Player *host = new Player("host");
     
     CardGame *cg = new CardGame(4, host, {p1, p2, p3});
-    cout << "ok";
+    
+    BlackJackController *game = new BlackJackController(cg);
+
+    game->run();
+
     delete p1;
     delete p2;
     delete p3;
+    delete host;
     delete cg;
+    delete game;
 }

@@ -21,12 +21,12 @@ public:
     bool addGame(CardGame *);
     bool removeGame(CardGame *);
     
-    inline void addCard(Card*);
-    inline std::string getName() const ;
-    inline void setSum(int);
-    inline int getSum() const ;
+    void addCard(Card*);
+    std::string getName() const ;
+    void setSum(int);
+    int getSum() const ;
 
     void clearCards();
 
-    inline std::string tostring() const ;
+    std::string tostring() const ;
 };
