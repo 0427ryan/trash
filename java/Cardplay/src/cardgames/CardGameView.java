@@ -2,26 +2,11 @@ package cardgames;
 
 import java.io.PrintStream;
 
-public class CardGameView{
+public interface CardGameView{
 
-    PrintStream out = System.out;
+    void print(Object s);
     
-    public CardGameView(){
+    void println(Object s);
 
-    }
-
-    public CardGameView(PrintStream out){
-        this.out = out;
-    }
-
-    public void print(Object s){
-        out.print(s);
-    }
-    
-    public void println(Object s){
-        out.println(s);
-    }
-    public void println(){
-        System.out.println();
-    }
+    void println();
 }

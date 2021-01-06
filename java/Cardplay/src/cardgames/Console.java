@@ -9,7 +9,7 @@ public class Console {
         this class is used to get input, the Scanner inside can be change.
     */
     private Scanner in = new Scanner(System.in);
-    private CardGameView err = new CardGameView();
+    private CardGameView err = new ConsoleView();
 
     public Console(){
     }
